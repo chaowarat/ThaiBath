@@ -37,6 +37,7 @@ function ArabicNumberToText(Number)
 				Number[1] = Number[1].substring(0, 2);
 			}
 			var NumberLen = Number[0].length - 0;
+			var isNormal = true;
 			for(var i = 0; i < NumberLen; i++)
 			{
 				var tmp = Number[0].substring(i, i + 1) - 0;
@@ -44,7 +45,7 @@ function ArabicNumberToText(Number)
 				{
 					if ((i == (NumberLen - 1)) && (tmp == 1))
 					{
-						BahtText += "เอ็ด";
+						BahtText += (isNormal ? "หนึ่ง" : "เอ็ด");
 					} else
 					if ((i == (NumberLen - 2)) && (tmp == 2))
 					{
@@ -58,6 +59,7 @@ function ArabicNumberToText(Number)
 						BahtText += NumberArray[tmp];
 					}
 					BahtText += DigitArray[NumberLen - i - 1];
+					if(NumberLen - i - 1 < 2) isNormal = false;
 				}
 			}
 			BahtText += "บาท";
@@ -67,6 +69,7 @@ function ArabicNumberToText(Number)
 			} else
 			{
 				DecimalLen = Number[1].length - 0;
+				var isNormal = true;
 				for (var i = 0; i < DecimalLen; i++)
 				{
 					var tmp = Number[1].substring(i, i + 1) - 0;
@@ -74,7 +77,7 @@ function ArabicNumberToText(Number)
 					{
 						if ((i == (DecimalLen - 1)) && (tmp == 1))
 						{
-							BahtText += "เอ็ด";
+							BahtText += (isNormal ? "หนึ่ง" : "เอ็ด");
 						} else
 						if ((i == (DecimalLen - 2)) && (tmp == 2))
 						{
@@ -88,6 +91,7 @@ function ArabicNumberToText(Number)
 							BahtText += NumberArray[tmp];
 						}
 						BahtText += DigitArray[DecimalLen - i - 1];
+						if(NumberLen - i - 1 < 2) isNormal = false;
 					}
 				}
 				BahtText += "สตางค์";
